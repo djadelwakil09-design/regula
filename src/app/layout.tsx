@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
+import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from '@/components/ui/toaster'
 import './globals.css'
 
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body className="min-h-screen bg-[#F8FAFC] antialiased">
           {children}
           <Toaster />
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
