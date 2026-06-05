@@ -1,13 +1,9 @@
 import { MetadataRoute } from 'next'
-import { db } from '@/lib/db'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://regula.app'
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://regula.be'
 
-  const regulations = await db.regulation.findMany({
-    where: { isActive: true },
-    select: { slug: true, updatedAt: true },
-  }).catch(() => [])
+  const regulations: { slug: string; updatedAt: Date }[] = []
 
   const staticPages = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 1 },
